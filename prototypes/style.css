@@ -1,0 +1,418 @@
+:root {
+  --gold-lightest: #fdf6e4;
+  --gold-light: #ffdb71;
+  --gold: #bf9b30;
+  --gold-dark: #805c0f;
+  --linear-h-gold: linear-gradient(to left, var(--gold-light), var(--gold-dark));
+  --hexagon-clip-path: polygon(25% 5%, 75% 5%, 100% 50%, 75% 95%, 25% 95%, 0% 50%);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body, main {
+  overflow-x: hidden;
+}
+
+html {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: teal;
+  color: #1f2937;
+  margin: 0;
+  width: 360px;
+}
+
+main {
+  background-color: #f8f8f8;
+}
+
+header {
+  position: relative;
+}
+
+header button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+header .close {
+  position: absolute;
+  top: .2rem;
+  right: .2rem;
+  z-index: 999;
+  color: gray !important;
+  cursor: pointer;
+}
+
+header .material-symbols-outlined {
+  width: 2rem;
+  height: 2rem;
+  font-size: 28px;
+  color: var(--gold-dark);
+}
+
+header h1 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #374151;
+  margin: 0.5rem;
+  flex-grow: 1;
+  text-align: center;
+}
+
+header .container, footer .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 95%;
+  padding: 0.5rem;
+}
+
+main {
+  padding-top: 1rem;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  background-color: white;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  margin-bottom: 1rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.03);
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.07), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.card-header {
+  padding: 0.5rem 1rem;
+}
+
+.card-header h2 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #f3f4f6;
+  margin: 0;
+}
+
+.card-body {
+  padding: 0.75rem 1rem;
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
+}
+
+.card-body > *:not(:last-child) {
+  margin-right: 1rem;
+}
+
+.card-info {
+  flex-grow: 1;
+}
+
+.card-info p {
+  margin: 0;
+}
+
+.card-info .primary-text {
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.card-info .secondary-text {
+  font-size: 0.75rem;
+  color: #9ca3af;
+}
+
+.points-hexagon {
+  flex: none;
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.nav-bar {
+  background-color: #ffffff;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.03);
+}
+
+footer button {
+  margin: 1rem;
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #6b7280;
+  text-decoration: none;
+}
+
+.nav-item .text {
+  font-size: 0.75rem;
+}
+
+.text-shadow-strong {
+  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+}
+
+.hexagon {
+  position: relative;
+  background: var(--gold);
+}
+
+.hexagon>span {
+  z-index: 999;
+}
+
+.hexagon:before,
+.double:after {
+  position: absolute;
+  content: '';
+}
+
+.hexagon:before {
+  top: 2px;
+  /* border width */
+  left: 2px;
+  /* border width */
+  height: calc(100% - 4px);
+  /* 100% - (2 * border width) */
+  width: calc(100% - 4px);
+  /* 100% - (2 * border width) */
+  background: var(--gold-lightest);
+}
+
+.hexagon,
+.hexagon:before {
+  -webkit-clip-path: var(--hexagon-clip-path);
+  clip-path: var(--hexagon-clip-path);
+}
+
+.color-gold {
+  color: var(--gold);
+}
+
+.color-gold-dark {
+  color: var(--gold-dark);
+}
+
+.bg-gold-dark {
+  background: var(--linear-h-gold);
+}
+
+.luxury {
+  font-family: 'Bodoni Moda', serif;
+}
+
+.bar-accent {
+  height: 1px;
+  width: 100%;
+  background: var(--linear-h-gold);
+}
+
+.nav-item.active .material-symbols-outlined,
+.nav-item.active span,
+.nav-item:hover .material-symbols-outlined,
+.nav-item:hover span {
+  color: var(--gold);
+}
+
+.checkbox-hidden {
+  display: none;
+}
+
+.checkbox-wrapper {
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+}
+
+.checkbox-custom {
+  width: 28px;
+  height: 28px;
+  border: 2px solid #d1d5db;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  color: white;
+  transition: all 0.2s ease-in-out;
+  user-select: none;
+}
+
+.checkbox-wrapper:hover .checkbox-custom {
+  border-color: var(--gold);
+}
+
+.checkbox-hidden:checked+.checkbox-custom {
+  background-color: var(--gold-lightest);
+  border-color: var(--gold);
+}
+
+.checkbox-hidden:checked+.checkbox-custom .material-symbols-outlined {
+  color: var(--gold);
+  opacity: 1;
+}
+
+.material-symbols-outlined {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-size: inherit;
+}
+
+/* Add these new classes to your style.css file */
+
+.header-title-centered {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #374151;
+  margin: 0;
+  flex-grow: 1;
+  text-align: center;
+}
+
+.course-hero {
+  min-height: 222px;
+  margin: -1rem -1rem 0 -1rem;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.course-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 0.75rem;
+}
+
+.course-description {
+  font-size: 1rem;
+  color: #374151;
+  margin-bottom: 1.5rem;
+}
+
+.step-card {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  gap: 1rem;
+  background-color: white;
+  border-radius: 12px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+}
+
+.step-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  flex-shrink: 1;
+}
+
+.step-number {
+  display: flex;
+  border-radius: 8px;
+  justify-content: center;
+  align-items: center;
+  max-width: 20px;
+}
+
+.step-title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0;
+  color: #1f2937;
+}
+
+.step-summary {
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.step-thumbnail {
+  border-radius: 8px;
+  background-size: cover;
+  background-position: center;
+  width: 140px;
+  height: 120px;
+  flex-shrink: 0;
+}
+
+.step-duration {
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+p.step-duration {
+  margin: 0;
+}
+
+.course-summary-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  margin: 1rem;
+}
+
+.course-summary-icon {
+  flex-shrink: 0;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f3f4f6; /* Light gray background */
+}
+
+.course-summary-icon .material-symbols-outlined {
+  font-size: 1.5rem;
+  color: #374151;
+}
+
+.course-summary-info {
+  flex-grow: 1;
+}
+
+.button-primary {
+  width: 95%;
+  cursor: pointer;
+  height: 4rem;
+  border-radius: 9999px; /* rounded-full */
+  background: var(--linear-h-gold);
+  color: var(--gold-lightest);
+  font-size: 1.2rem;
+  font-weight: 500;
+  border: 2px solid white;
+  transition: border 0.2s ease-in-out;
+}
+
+.button-primary:hover {
+  border: 1px solid var(--gold);
+}

@@ -1,0 +1,174 @@
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Today</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght@20,500" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="reset.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <button>
+        <span class="material-symbols-outlined">chevron_left</span>
+      </button>
+      <h1 class="luxury">Today</h1>
+      <button>
+        <span class="material-symbols-outlined">chevron_right</span>
+      </button>
+    </div>
+    <div class="bar-accent"></div>
+  </header>
+
+  <main>
+    <div class="card" data-time="09:00">
+      <div class="card-header bg-gold-dark">
+        <h2 class="luxury text-shadow-strong">Drink Water</h2>
+      </div>
+      <div class="card-body">
+        <label class="checkbox-wrapper">
+          <input type="checkbox" class="checkbox-hidden">
+          <span class="checkbox-custom">
+            <span class="material-symbols-outlined">check</span>
+          </span>
+        </label>
+        <div class="card-info">
+          <p class="primary-text">Habit</p>
+          <p class="secondary-text">09:00</p>
+        </div>
+        <span class="hexagon points-hexagon color-gold-dark"><span>3</span></span>
+      </div>
+    </div>
+
+    <div class="card" data-time="12:00">
+      <div class="card-header bg-gold-dark">
+        <h2 class="luxury text-shadow-strong">Perform Action</h2>
+      </div>
+      <div class="card-body">
+        <label class="checkbox-wrapper">
+          <input type="checkbox" class="checkbox-hidden">
+          <span class="checkbox-custom">
+            <span class="material-symbols-outlined">check</span>
+          </span>
+        </label>
+        <div class="card-info">
+          <p class="primary-text">Optimize Sleep Quality</p>
+          <p class="secondary-text">12:00</p>
+        </div>
+        <span class="hexagon points-hexagon color-gold-dark"><span>2</span></span>
+      </div>
+    </div>
+
+    <div class="card" data-time="16:00">
+      <div class="card-header bg-gold-dark">
+        <h2 class="luxury text-shadow-strong">Step Title</h2>
+      </div>
+      <div class="card-body">
+        <label class="checkbox-wrapper">
+          <input type="checkbox" class="checkbox-hidden">
+          <span class="checkbox-custom">
+            <span class="material-symbols-outlined">check</span>
+          </span>
+        </label>
+        <div class="card-info">
+          <p class="primary-text">Course Title</p>
+          <p class="secondary-text">16:00</p>
+        </div>
+        <span class="hexagon points-hexagon color-gold-dark"><span>2</span></span>
+      </div>
+    </div>
+
+    <div class="card" data-time="21:00">
+      <div class="card-header bg-gold-dark">
+        <h2 class="luxury text-shadow-strong">Prepare for Tomorrow</h2>
+      </div>
+      <div class="card-body">
+        <label class="checkbox-wrapper">
+          <input type="checkbox" class="checkbox-hidden">
+          <span class="checkbox-custom">
+            <span class="material-symbols-outlined">check</span>
+          </span>
+        </label>
+        <div class="card-info">
+          <p class="primary-text">Habit</p>
+          <p class="secondary-text">21:00</p>
+        </div>
+        <span class="hexagon points-hexagon color-gold-dark"><span>1000</span></span>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="bar-accent"></div>
+    <div class="container">
+      <a class="nav-item" href="#">
+        <span class="material-symbols-outlined">neurology</span>
+        <span class="text">Learn</span>
+      </a>
+      <a class="nav-item" href="#">
+        <span class="material-symbols-outlined">heart_check</span>
+        <span class="text">Routine</span>
+      </a>
+      <a class="nav-item active" href="#">
+        <span class="material-symbols-outlined" style="transform: scale(1.4);">checklist</span>
+        <span class="text">Action</span>
+      </a>
+      <a class="nav-item" href="#">
+        <span class="material-symbols-outlined">keyboard_double_arrow_up</span>
+        <span class="text">Journey</span>
+      </a>
+      <a class="nav-item" href="#">
+        <span class="material-symbols-outlined">person_outline</span>
+        <span class="text">Progress</span>
+      </a>
+    </div>
+  </footer>
+
+  <script>
+    const container = document.querySelector('main.main-content');
+
+    function parseTimeToNumber(timeStr) {
+      const [h, m] = timeStr.split(':').map(Number);
+      return h * 100 + m;
+    }
+
+    function sortCards() {
+      const cards = Array.from(container.querySelectorAll('.card'));
+
+      cards.sort((a, b) => {
+        const checkedA = a.dataset.checked === 'true' ? 1 : 0;
+        const checkedB = b.dataset.checked === 'true' ? 1 : 0;
+
+        if (checkedA !== checkedB) return checkedA - checkedB;
+
+        const timeA = parseTimeToNumber(a.dataset.time);
+        const timeB = parseTimeToNumber(b.dataset.time);
+        return timeA - timeB;
+      });
+
+      cards.forEach(card => container.appendChild(card));
+    }
+
+    document.querySelectorAll('.checkbox-hidden').forEach(checkbox => {
+      checkbox.addEventListener('change', () => {
+        handleCheck(checkbox);
+      });
+      handleCheck(checkbox);
+    });
+
+    function handleCheck(checkbox) {
+      const card = checkbox.closest('.card')
+      card.dataset.checked = checkbox.checked ? 'true' : 'false';
+      card.style.opacity = checkbox.checked ? '0.3' : '1';
+      sortCards();
+    }
+  </script>
+
+</body>
+</html>
